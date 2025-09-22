@@ -9,80 +9,32 @@ import entity.PositionEnum;
 public class PracticeDay2Exercise1 {
     public static void main(String[] args) {
         // === Department ===
-        Department d1 = new Department();
-        d1.id = 1;
-        d1.setName("IT");
+        Department d1 = new Department(1, "IT");
 
-        Department d2 = new Department();
-        d2.id = 2;
-        d2.setName("HR");
+        Department d2 = new Department(2, "HR");
 
-        Department d3 = new Department();
-        d3.id = 3;
-        d3.setName("EDU");
+        Department d3 = new Department(3, "EDU");
 
         // === Position ===
-        Position p1 = new Position();
-        p1.id = 1;
-        p1.setName(PositionEnum.DEV);
+        Position p1 = new Position(1, PositionEnum.DEV);
 
-        Position p2 = new Position();
-        p2.id = 2;
-        p2.setName(PositionEnum.TEST);
+        Position p2 = new Position(2, PositionEnum.TEST);
 
-        Position p3 = new Position();
-        p3.id = 3;
-        p3.setName(PositionEnum.SCRUM);
+        Position p3 = new Position(3, PositionEnum.SCRUM);
 
         // === Account ===
-        Account a1 = new Account();
-        a1.setId(1);
-        a1.setUsername("nhat");
-        a1.setEmail("nhat@mail.com");
-        a1.setFullname("Nhat Nguyen");
-        a1.setDepartment(d1);
-        a1.setPosition(p1);
-        a1.setCreatedDate(LocalDate.now());
+        Account a1 = new Account(1, "nhat@mail.com", "nhat", "Nhat Nguyen", LocalDate.now(), d1, p1);
 
-        Account a2 = new Account();
-        a2.setId(2);
-        a2.setUsername("na");
-        a2.setEmail("na@mail.com");
-        a2.setFullname("Na Nguyen");
-        a2.setDepartment(d2);
-        a2.setPosition(p2);
-        a2.setCreatedDate(LocalDate.now());
+        Account a2 = new Account(2, "na@mail.com", "na", "Na Nguyen", LocalDate.now(), d2, p2);
 
-        Account a3 = new Account();
-        a3.setId(3);
-        a3.setUsername("quyen");
-        a3.setEmail("quyen@mail.com");
-        a3.setFullname("Quyen Nguyen");
-        a3.setDepartment(d3);
-        a3.setPosition(p3);
-        a3.setCreatedDate(LocalDate.now());
+        Account a3 = new Account(3, "quyen@mail.com", "quyen", "Quyen Nguyen", LocalDate.now(), d3, p3);
 
         // === Group ===
-        Group g1 = new Group();
-        g1.setId(1);
-        g1.setName("Backend Team");
-        g1.setCreator(a1);
-        g1.setCreatedAt(LocalDate.now());
-        g1.setMembers(new Account[] { a1, a2 });
+        Group g1 = new Group(1, "Backend Team", a1, LocalDate.now(), new Account[] { a1, a2 });
 
-        Group g2 = new Group();
-        g2.setId(2);
-        g2.setName("Frontend Team");
-        g2.setCreator(a2);
-        g2.setCreatedAt(LocalDate.now());
-        g2.setMembers(new Account[] { a2, a3 });
+        Group g2 = new Group(2, "Frontend Team", a2, LocalDate.now(), new Account[] { a2, a3 });
 
-        Group g3 = new Group();
-        g3.setId(3);
-        g3.setName("DevOps Team");
-        g3.setCreator(a3);
-        g3.setCreatedAt(LocalDate.now());
-        g3.setMembers(new Account[] { a1, a3 });
+        Group g3 = new Group(3, "DevOps Team", a3, LocalDate.now(), new Account[] { a1, a3 });
 
         /*
          * Question 1:
