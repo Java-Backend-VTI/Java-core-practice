@@ -1,82 +1,88 @@
 import java.time.LocalDate;
 
+import entity.Account;
+import entity.Department;
+import entity.Group;
+import entity.Position;
+import entity.PositionEnum;
+
 public class PracticeDay2Exercise1 {
     public static void main(String[] args) {
         // === Department ===
         Department d1 = new Department();
         d1.id = 1;
-        d1.name = "IT";
+        d1.setName("IT");
 
         Department d2 = new Department();
         d2.id = 2;
-        d2.name = "HR";
+        d2.setName("HR");
 
         Department d3 = new Department();
         d3.id = 3;
-        d3.name = "EDU";
+        d3.setName("EDU");
 
         // === Position ===
         Position p1 = new Position();
         p1.id = 1;
-        p1.name = PositionEnum.DEV;
+        p1.setName(PositionEnum.DEV);
 
         Position p2 = new Position();
         p2.id = 2;
-        p2.name = PositionEnum.TEST;
+        p2.setName(PositionEnum.TEST);
 
         Position p3 = new Position();
         p3.id = 3;
-        p3.name = PositionEnum.SCRUM;
+        p3.setName(PositionEnum.SCRUM);
 
         // === Account ===
         Account a1 = new Account();
-        a1.id = 1;
-        a1.username = "nhat";
-        a1.email = "nhat@mail.com";
-        a1.fullname = "Nhat Nguyen";
-        a1.department = d1;
-        a1.position = p1;
-        a1.createdDate = LocalDate.now();
+        a1.setId(1);
+        a1.setUsername("nhat");
+        a1.setEmail("nhat@mail.com");
+        a1.setFullname("Nhat Nguyen");
+        a1.setDepartment(d1);
+        a1.setPosition(p1);
+        a1.setCreatedDate(LocalDate.now());
 
         Account a2 = new Account();
-        a2.id = 2;
-        a2.username = "na";
-        a2.email = "na@mail.com";
-        a2.fullname = "Na Nguyen";
-        a2.department = d2;
-        a2.position = p2;
-        a2.createdDate = LocalDate.now();
+        a2.setId(2);
+        a2.setUsername("na");
+        a2.setEmail("na@mail.com");
+        a2.setFullname("Na Nguyen");
+        a2.setDepartment(d2);
+        a2.setPosition(p2);
+        a2.setCreatedDate(LocalDate.now());
 
         Account a3 = new Account();
-        a3.id = 3;
-        a3.username = "quyen";
-        a3.email = "quyen@mail.com";
-        a3.fullname = "Quyen Nguyen";
-        a3.department = d3;
-        a3.position = p3;
-        a3.createdDate = LocalDate.now();
+        a3.setId(3);
+        a3.setUsername("quyen");
+        a3.setEmail("quyen@mail.com");
+        a3.setFullname("Quyen Nguyen");
+        a3.setDepartment(d3);
+        a3.setPosition(p3);
+        a3.setCreatedDate(LocalDate.now());
 
         // === Group ===
         Group g1 = new Group();
-        g1.id = 1;
-        g1.name = "Backend Team";
-        g1.creator = a1;
-        g1.createdAt = LocalDate.now();
-        g1.members = new Account[] { a1, a2 };
+        g1.setId(1);
+        g1.setName("Backend Team");
+        g1.setCreator(a1);
+        g1.setCreatedAt(LocalDate.now());
+        g1.setMembers(new Account[] { a1, a2 });
 
         Group g2 = new Group();
-        g2.id = 2;
-        g2.name = "Frontend Team";
-        g2.creator = a2;
-        g2.createdAt = LocalDate.now();
-        g2.members = new Account[] { a2, a3 };
+        g2.setId(2);
+        g2.setName("Frontend Team");
+        g2.setCreator(a2);
+        g2.setCreatedAt(LocalDate.now());
+        g2.setMembers(new Account[] { a2, a3 });
 
         Group g3 = new Group();
-        g3.id = 3;
-        g3.name = "DevOps Team";
-        g3.creator = a3;
-        g3.createdAt = LocalDate.now();
-        g3.members = new Account[] { a1, a3 };
+        g3.setId(3);
+        g3.setName("DevOps Team");
+        g3.setCreator(a3);
+        g3.setCreatedAt(LocalDate.now());
+        g3.setMembers(new Account[] { a1, a3 });
 
         /*
          * Question 1:
@@ -86,10 +92,10 @@ public class PracticeDay2Exercise1 {
          * Nếu không thì sẽ in ra text "Phòng ban của nhân viên này là …"
          */
         System.out.println("-------------------Question 1-------------------\n");
-        if (a2.department == null) {
+        if (a2.getDepartment() == null) {
             System.out.println("Nhân viên này chua có phong ban");
         } else {
-            System.out.println("Phòng ban của nhân viên này là: " + a2.department.name);
+            System.out.println("Phòng ban của nhân viên này là: " + a2.getDepartment().getName());
         }
 
         /*
@@ -109,19 +115,19 @@ public class PracticeDay2Exercise1 {
         String group2 = "";
         String group3 = "";
 
-        if (g1.members[0] == a2 || g1.members[1] == a2) {
+        if (g1.getMembers()[0] == a2 || g1.getMembers()[1] == a2) {
             count++;
-            group1 = g1.name;
+            group1 = g1.getName();
         }
 
-        if (g2.members[0] == a2 || g2.members[1] == a2) {
+        if (g2.getMembers()[0] == a2 || g2.getMembers()[1] == a2) {
             count++;
-            group2 = g2.name;
+            group2 = g2.getName();
         }
 
-        if (g3.members[0] == a2 || g3.members[1] == a2) {
+        if (g3.getMembers()[0] == a2 || g3.getMembers()[1] == a2) {
             count++;
-            group3 = g3.name;
+            group3 = g3.getName();
         }
 
         if (count == 0) {
@@ -139,8 +145,8 @@ public class PracticeDay2Exercise1 {
          * Sử dụng toán tử ternary để làm Question 1
          */
         System.out.println("\n-------------------Question 3-------------------\n");
-        System.out.println(a2.department == null ? "Nhân viên này chưa có phòng ban"
-                : "Phòng ban của nhân viên này là: " + a2.department.name);
+        System.out.println(a2.getDepartment() == null ? "Nhân viên này chưa có phòng ban"
+                : "Phòng ban của nhân viên này là: " + a2.getDepartment().getName());
 
         /*
          * Question 4:
@@ -151,7 +157,8 @@ public class PracticeDay2Exercise1 {
          */
         System.out.println("\n-------------------Question 4-------------------\n");
         System.out.println(
-                a1.position.name == PositionEnum.DEV ? "Đây là Developer" : "Người này không phải là Developer");
+                a1.getPosition().getName() == PositionEnum.DEV ? "Đây là Developer"
+                        : "Người này không phải là Developer");
         /*
          * Question 5:
          * Lấy ra số lượng account trong nhóm thứ 1 và in ra theo format sau:
@@ -161,7 +168,7 @@ public class PracticeDay2Exercise1 {
          * Còn lại in ra "Nhóm có nhiều thành viên"
          */
         System.out.println("\n-------------------Question 5-------------------\n");
-        int soLuongThanhVien = g1.members.length;
+        int soLuongThanhVien = g1.getMembers().length;
         switch (soLuongThanhVien) {
             case 1:
                 System.out.println("Nhóm có một thành viên");
@@ -205,7 +212,7 @@ public class PracticeDay2Exercise1 {
          * Sử dụng switch case để làm lại Question 4
          */
         System.out.println("\n-------------------Question 7-------------------\n");
-        switch (a1.position.name) {
+        switch (a1.getPosition().getName()) {
             case PositionEnum.DEV:
                 System.out.println("Đây là Developer");
                 break;
@@ -227,9 +234,9 @@ public class PracticeDay2Exercise1 {
         System.out.println("\n-------------------Question 8-------------------\n");
         Account[] accounts = { a1, a2, a3 };
         for (Account account : accounts) {
-            System.out.println("Email: " + account.email
-                    + " | FullName: " + account.fullname
-                    + " | Department: " + (account.department != null ? account.department.name
+            System.out.println("Email: " + account.getEmail()
+                    + " | FullName: " + account.getFullname()
+                    + " | Department: " + (account.getDepartment() != null ? account.getDepartment().getName()
                             : "Nhân viên này chưa có phòng ban"));
         }
 
@@ -240,7 +247,7 @@ public class PracticeDay2Exercise1 {
         System.out.println("\n-------------------Question 9-------------------\n");
         Department[] departments = { d1, d2, d3 };
         for (Department dept : departments) {
-            System.out.println("Department ID: " + dept.id + " | Name: " + dept.name);
+            System.out.println("Department ID: " + dept.getId() + " | Name: " + dept.getName());
         }
 
         /*
@@ -259,13 +266,13 @@ public class PracticeDay2Exercise1 {
         System.out.println("\n-------------------Question 10-------------------\n");
         for (int i = 0; i < accounts.length; i++) {
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
 
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
         }
 
@@ -283,8 +290,8 @@ public class PracticeDay2Exercise1 {
         for (int i = 0; i < departments.length; i++) {
             Department dept = departments[i];
             System.out.println("Thông tin department thứ " + (i + 1) + " là:");
-            System.out.println("Id: " + dept.id);
-            System.out.println("Name: " + dept.name + "\n");
+            System.out.println("Id: " + dept.getId());
+            System.out.println("Name: " + dept.getName() + "\n");
         }
 
         /*
@@ -297,13 +304,13 @@ public class PracticeDay2Exercise1 {
                 break;
             }
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
 
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
         }
 
@@ -317,13 +324,13 @@ public class PracticeDay2Exercise1 {
                 continue;
             }
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
 
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
         }
 
@@ -337,14 +344,14 @@ public class PracticeDay2Exercise1 {
                 continue;
             }
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
 
-            if (acc.id < 4) {
+            if (acc.getId() < 4) {
                 System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-                System.out.println("Email: " + acc.email);
-                System.out.println("Full name: " + acc.fullname);
+                System.out.println("Email: " + acc.getEmail());
+                System.out.println("Full name: " + acc.getFullname());
                 System.out.println("Phòng ban: " + deptName + "\n");
             }
         }
@@ -369,12 +376,12 @@ public class PracticeDay2Exercise1 {
         int i = 0;
         while (i < accounts.length) {
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             i++;
         }
@@ -383,8 +390,8 @@ public class PracticeDay2Exercise1 {
         while (i < departments.length) {
             Department dept = departments[i];
             System.out.println("Thông tin department thứ " + (i + 1) + " là:");
-            System.out.println("Id: " + dept.id);
-            System.out.println("Name: " + dept.name + "\n");
+            System.out.println("Id: " + dept.getId());
+            System.out.println("Name: " + dept.getName() + "\n");
             i++;
         }
 
@@ -394,12 +401,12 @@ public class PracticeDay2Exercise1 {
                 break;
             }
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             i++;
         }
@@ -411,12 +418,12 @@ public class PracticeDay2Exercise1 {
                 continue;
             }
             Account acc = accounts[i];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             i++;
         }
@@ -424,14 +431,14 @@ public class PracticeDay2Exercise1 {
         i = 0;
         while (i < accounts.length) {
             Account acc = accounts[i];
-            if (acc.id < 4) {
-                String deptName = (acc.department == null)
+            if (acc.getId() < 4) {
+                String deptName = (acc.getDepartment() == null)
                         ? "Chưa có phòng ban"
-                        : acc.department.name;
+                        : acc.getDepartment().getName();
 
                 System.out.println("Thông tin account thứ " + (i + 1) + " là:");
-                System.out.println("Email: " + acc.email);
-                System.out.println("Full name: " + acc.fullname);
+                System.out.println("Email: " + acc.getEmail());
+                System.out.println("Full name: " + acc.getFullname());
                 System.out.println("Phòng ban: " + deptName + "\n");
             }
             i++;
@@ -454,12 +461,12 @@ public class PracticeDay2Exercise1 {
         int j = 0;
         do {
             Account acc = accounts[j];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (j + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             j++;
         } while (j < accounts.length);
@@ -468,8 +475,8 @@ public class PracticeDay2Exercise1 {
         do {
             Department dept = departments[j];
             System.out.println("Thông tin department thứ " + (j + 1) + " là:");
-            System.out.println("Id: " + dept.id);
-            System.out.println("Name: " + dept.name + "\n");
+            System.out.println("Id: " + dept.getId());
+            System.out.println("Name: " + dept.getName() + "\n");
             j++;
         } while (j < departments.length);
 
@@ -479,12 +486,12 @@ public class PracticeDay2Exercise1 {
                 break;
             }
             Account acc = accounts[j];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (j + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             j++;
         } while (j < accounts.length);
@@ -496,12 +503,12 @@ public class PracticeDay2Exercise1 {
                 continue;
             }
             Account acc = accounts[j];
-            String deptName = (acc.department == null)
+            String deptName = (acc.getDepartment() == null)
                     ? "Chưa có phòng ban"
-                    : acc.department.name;
+                    : acc.getDepartment().getName();
             System.out.println("Thông tin account thứ " + (j + 1) + " là:");
-            System.out.println("Email: " + acc.email);
-            System.out.println("Full name: " + acc.fullname);
+            System.out.println("Email: " + acc.getEmail());
+            System.out.println("Full name: " + acc.getFullname());
             System.out.println("Phòng ban: " + deptName + "\n");
             j++;
         } while (j < accounts.length);
@@ -509,14 +516,14 @@ public class PracticeDay2Exercise1 {
         j = 0;
         do {
             Account acc = accounts[j];
-            if (acc.id < 4) {
-                String deptName = (acc.department == null)
+            if (acc.getId() < 4) {
+                String deptName = (acc.getDepartment() == null)
                         ? "Chưa có phòng ban"
-                        : acc.department.name;
+                        : acc.getDepartment().getName();
 
                 System.out.println("Thông tin account thứ " + (j + 1) + " là:");
-                System.out.println("Email: " + acc.email);
-                System.out.println("Full name: " + acc.fullname);
+                System.out.println("Email: " + acc.getEmail());
+                System.out.println("Full name: " + acc.getFullname());
                 System.out.println("Phòng ban: " + deptName + "\n");
             }
             j++;
